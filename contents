@@ -1,0 +1,16 @@
+import Foundation
+ 
+func calculateTotalCost(itemPrices: [Double], calculateTax: (Double) -> Double) -> Double {
+    var totalCost = itemPrices.reduce(0.0, +)
+    totalCost = totalCost + calculateTax(totalCost)
+    return totalCost
+}
+ 
+let calculateTax: (Double) -> Double = { totalCost in
+    let taxRate = 0.10
+    return totalCost * taxRate
+}
+ 
+let itemPrices = [55.0, 110.0, 220.0, 440.0]
+let total = calculateTotalCost(itemPrices: itemPrices, calculateTax: calculateTax)
+print("Total cost including tax: \(total)")
